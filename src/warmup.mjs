@@ -719,5 +719,6 @@ export function createWarmup(ctx) {
     forceRefreshEventImage,
     autoHealEventImage: localEventRefresh ? autoHealEventImage : noop,
     latestTriggerType,
+    withDbLock,
   };
 }

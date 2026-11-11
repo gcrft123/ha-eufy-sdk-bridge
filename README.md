@@ -10,11 +10,13 @@ anything. Ships as a multi-arch Docker image with [go2rtc](https://github.com/Al
 bundled, so live camera video is available as RTSP / WebRTC / MSE / HLS with nothing else to install.
 
 ```
-WS    :3000/ws             control, state, events     ← the frontend talks to this
-HTTP  :3000/stream/<sn>    live video (Annex-B)       ← go2rtc pulls this
-HTTP  :3000/snapshot/<sn>  a JPEG still
-HTTP  :3000/clip/<sn>      the latest detection's recording, as an mp4 (HomeBase 2)
-HTTP  :3000/healthz        which cameras are streaming
+WS    :3000/ws                     control, state, events     ← the frontend talks to this
+HTTP  :3000/stream/<sn>            live video (Annex-B)       ← go2rtc pulls this
+HTTP  :3000/snapshot/<sn>          a JPEG still
+HTTP  :3000/clip/<sn>              the latest detection's recording, as an mp4 (HomeBase 2)
+HTTP  :3000/recordings/<sn>        a camera's recordings today (HomeBase 3)
+HTTP  :3000/recording/<sn>/<name>  one stored recording, as an mp4
+HTTP  :3000/healthz                which cameras are streaming
 ```
 
 Video is deliberately **not** on the WebSocket: the WS hands back a URL, and _connecting to that URL
